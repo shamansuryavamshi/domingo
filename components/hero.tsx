@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { asset } from "@/lib/base-path";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-brand">
       <Image
-        src="/star.svg"
+        src={asset("/star.svg")}
         alt=""
         fill
         className="pointer-events-none object-cover"
@@ -15,7 +16,7 @@ export default function Hero() {
 
       <div className="absolute inset-0 animate-float">
         <Image
-          src="/creme.svg"
+          src={asset("/creme.svg")}
           alt=""
           fill
           className="pointer-events-none object-cover"

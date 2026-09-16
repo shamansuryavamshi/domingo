@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { asset } from "@/lib/base-path";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
@@ -14,7 +15,7 @@ export default function Navbar() {
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-2 py-0">
         <Link href="/" className="order-first shrink-0 -mt-10">
           <Image
-            src="/domingo.svg"
+            src={asset("/domingo.svg")}
             alt="Domingo"
             width={150}
             height={56}
