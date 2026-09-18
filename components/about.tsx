@@ -1,11 +1,4 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "About DOMINGO — Sunday Dessert Studio",
-  description:
-    "DOMINGO means Sunday. One handcrafted dessert, five pieces, released every Sunday from the studio. Small-batch, quality over quantity.",
-};
+import ScrollLink from "@/components/scroll-link";
 
 const STATS = [
   { value: "01", label: "Dessert per Sunday" },
@@ -28,10 +21,10 @@ const PILLARS = [
   },
 ];
 
-export default function AboutPage() {
+export default function About() {
   return (
-    <main className="bg-brand font-body text-white">
-      <section className="relative px-6 pb-16 pt-40 md:px-12 md:pb-24 md:pt-52">
+    <section id="about" className="scroll-mt-20 bg-brand font-body text-white">
+      <div className="px-6 py-24 md:px-12 md:py-32">
         <div className="mb-8 flex">
           <div className="inline-flex items-center gap-2.5 rounded-lg border-[3px] border-black bg-cream px-3.5 py-1.5 shadow-[4px_4px_0_0_#000]">
             <svg
@@ -52,11 +45,11 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <h1 className="text-[clamp(3rem,9vw,7.5rem)] font-black uppercase leading-[0.9] tracking-tight">
+        <h2 className="text-[clamp(2.5rem,8vw,6rem)] font-black uppercase leading-[0.9] tracking-tight">
           About
           <br />
-          <span className="block text-[1.35em]">Domingo</span>
-        </h1>
+          <span className="block text-[1.3em]">Domingo</span>
+        </h2>
 
         <p className="mt-10 max-w-3xl text-base font-semibold leading-relaxed md:text-lg">
           Domingo is a dessert studio built around a single decision: make one
@@ -65,9 +58,9 @@ export default function AboutPage() {
           for everyone, everywhere, all the time. We make one for very few
           people, once a week.
         </p>
-      </section>
+      </div>
 
-      <section className="border-y-[3px] border-black bg-cream px-6 py-16 text-black md:px-12 md:py-24">
+      <div className="border-y-[3px] border-black bg-cream px-6 py-16 text-black md:px-12 md:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {STATS.map((stat) => (
@@ -90,13 +83,13 @@ export default function AboutPage() {
               <p className="mb-4 inline-block rounded-lg border-[3px] border-black bg-white px-3.5 py-1.5 text-xs font-black uppercase tracking-[0.18em] shadow-[4px_4px_0_0_#000]">
                 The Sunday concept
               </p>
-              <h2 className="text-[clamp(2rem,5vw,4rem)] font-black uppercase leading-[0.95] tracking-tight">
+              <h3 className="text-[clamp(2rem,5vw,4rem)] font-black uppercase leading-[0.95] tracking-tight">
                 One dessert.
                 <br />
                 Five pieces.
                 <br />
                 A weekly wait.
-              </h2>
+              </h3>
             </div>
             <div className="flex flex-col justify-center">
               <p className="text-base font-semibold leading-relaxed md:text-lg">
@@ -108,18 +101,18 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section className="px-6 py-16 md:px-12 md:py-24">
+      <div className="px-6 py-16 md:px-12 md:py-24">
         <div className="mx-auto max-w-7xl">
           <p className="mb-4 inline-block rounded-lg border-[3px] border-black bg-cream px-3.5 py-1.5 text-xs font-black uppercase tracking-[0.18em] text-black shadow-[4px_4px_0_0_#000]">
             The philosophy
           </p>
-          <h2 className="mb-12 text-[clamp(2rem,5vw,4rem)] font-black uppercase leading-[0.95] tracking-tight">
+          <h3 className="mb-12 text-[clamp(2rem,5vw,4rem)] font-black uppercase leading-[0.95] tracking-tight">
             Fewer, better,
             <br />
             <span className="text-cream/90">by hand</span>
-          </h2>
+          </h3>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {PILLARS.map((pillar, index) => (
@@ -130,9 +123,9 @@ export default function AboutPage() {
                 <p className="text-sm font-black uppercase tracking-[0.18em] text-brand">
                   {String(index + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-4 text-2xl font-black uppercase tracking-tight">
+                <h4 className="mt-4 text-2xl font-black uppercase tracking-tight">
                   {pillar.title}
-                </h3>
+                </h4>
                 <p className="mt-3 text-sm font-semibold leading-relaxed md:text-base">
                   {pillar.text}
                 </p>
@@ -146,27 +139,7 @@ export default function AboutPage() {
             pieces, one day a week.
           </p>
         </div>
-      </section>
-
-      <section className="border-t-[3px] border-black bg-cream px-6 py-16 text-black md:px-12 md:py-20">
-        <div className="mx-auto max-w-7xl text-center">
-          <h2 className="text-[clamp(2rem,6vw,4.5rem)] font-black uppercase leading-[0.95] tracking-tight">
-            This Sunday&apos;s dessert
-            <br />
-            won&apos;t wait.
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-base font-semibold leading-relaxed md:text-lg">
-            Only five pieces are made each week. Secure yours before the five
-            become zero.
-          </p>
-          <Link
-            href="/reserve"
-            className="mt-10 inline-block rounded-md border-2 border-black bg-white px-8 py-4 text-sm font-extrabold uppercase tracking-wide text-black shadow-neubrutal transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          >
-            Reserve this Sunday
-          </Link>
-        </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }

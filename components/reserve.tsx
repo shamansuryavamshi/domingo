@@ -1,16 +1,9 @@
-import type { Metadata } from "next";
 import ReservationForm from "@/components/reservation-form";
 
-export const metadata: Metadata = {
-  title: "Reserve — DOMINGO Sunday Dessert Studio",
-  description:
-    "Reserve this Sunday's dessert. Only five handcrafted pieces are made each week — reservations are limited to five total.",
-};
-
-export default function ReservePage() {
+export default function Reserve() {
   return (
-    <main className="bg-brand font-body text-white">
-      <section className="relative px-6 pb-24 pt-40 md:px-12 md:pt-52">
+    <section id="reserve" className="scroll-mt-20 bg-brand font-body text-white">
+      <div className="px-6 py-24 md:px-12 md:py-32">
         <div className="mb-8 flex">
           <div className="inline-flex items-center gap-2.5 rounded-lg border-[3px] border-black bg-cream px-3.5 py-1.5 shadow-[4px_4px_0_0_#000]">
             <svg
@@ -32,11 +25,11 @@ export default function ReservePage() {
           </div>
         </div>
 
-        <h1 className="text-[clamp(2.75rem,8vw,6.5rem)] font-black uppercase leading-[0.9] tracking-tight">
+        <h2 className="text-[clamp(2.5rem,8vw,6rem)] font-black uppercase leading-[0.9] tracking-tight">
           Reserve
           <br />
           <span className="block text-[1.2em]">this Sunday</span>
-        </h1>
+        </h2>
 
         <p className="mt-8 max-w-2xl text-base font-semibold leading-relaxed md:text-lg">
           Reservations are for this week&apos;s dessert only — it changes every
@@ -47,7 +40,7 @@ export default function ReservePage() {
         <div className="mx-auto mt-14 max-w-7xl">
           <ReservationForm />
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 import Lenis from "lenis";
+import { setLenisInstance } from "@/lib/smooth-scroll-client";
 
 export function SmoothScrollProvider({
   children,
@@ -13,6 +14,7 @@ export function SmoothScrollProvider({
   useEffect(() => {
     const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
     lenisRef.current = lenis;
+    setLenisInstance(lenis);
 
     let rafId: number;
     const raf = (time: number) => {
@@ -23,6 +25,7 @@ export function SmoothScrollProvider({
 
     return () => {
       cancelAnimationFrame(rafId);
+      setLenisInstance(null);
       lenis.destroy();
     };
   }, []);

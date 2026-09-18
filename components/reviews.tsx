@@ -1,19 +1,12 @@
-import type { Metadata } from "next";
 import { reviews } from "@/lib/reviews";
 
-export const metadata: Metadata = {
-  title: "DOMINGO Reviews",
-  description:
-    "What people say about Domingo's Sunday dessert studio — one handcrafted dessert, five pieces, released every Sunday.",
-};
-
-export default function ReviewsPage() {
+export default function Reviews() {
   const featured = reviews.find((review) => review.featured);
   const rest = reviews.filter((review) => review.id !== featured?.id);
 
   return (
-    <main className="bg-brand font-body text-white">
-      <section className="relative px-6 pb-16 pt-40 md:px-12 md:pb-24 md:pt-52">
+    <section id="reviews" className="scroll-mt-20 border-t-[3px] border-black bg-brand font-body text-white">
+      <div className="px-6 py-24 md:px-12 md:py-32">
         <div className="mb-8 flex">
           <div className="inline-flex items-center gap-2.5 rounded-lg border-[3px] border-black bg-cream px-3.5 py-1.5 shadow-[4px_4px_0_0_#000]">
             <svg
@@ -34,23 +27,20 @@ export default function ReviewsPage() {
           </div>
         </div>
 
-        <h1 className="text-[clamp(3rem,9vw,7.5rem)] font-black uppercase leading-[0.9] tracking-tight">
+        <h2 className="text-[clamp(2.5rem,8vw,6rem)] font-black uppercase leading-[0.9] tracking-tight">
           Reviews
-        </h1>
+        </h2>
 
         <p className="mt-8 max-w-2xl text-base font-semibold leading-relaxed md:text-lg">
           Five pieces exist. So the reviews stay few, and they stay true.
           Collected from the people who got to Sunday first.
         </p>
-      </section>
+      </div>
 
-      <section className="px-6 pb-24 md:px-12">
+      <div className="px-6 pb-24 md:px-12 md:pb-32">
         {featured && (
           <article className="mx-auto max-w-7xl rounded-lg border-[3px] border-black bg-cream p-8 text-black shadow-[4px_4px_0_0_#000] md:p-14">
-            <p
-              className="font-black leading-none text-brand"
-              aria-hidden="true"
-            >
+            <p className="font-black leading-none text-brand" aria-hidden="true">
               &ldquo;
             </p>
             <blockquote className="mt-2 text-[clamp(1.5rem,4vw,2.75rem)] font-black leading-tight tracking-tight">
@@ -92,7 +82,7 @@ export default function ReviewsPage() {
             ))}
           </div>
         )}
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }

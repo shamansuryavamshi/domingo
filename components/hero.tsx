@@ -3,7 +3,7 @@ import { asset } from "@/lib/base-path";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-brand">
+    <section id="hero" className="relative min-h-screen overflow-hidden bg-brand">
       <Image
         src={asset("/star.svg")}
         alt=""

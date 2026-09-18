@@ -1,43 +1,77 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { asset } from "@/lib/base-path";
+import ScrollLink from "@/components/scroll-link";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Reviews", href: "/reviews" },
-  { label: "Reserve", href: "/reserve" },
+  { label: "Home", id: "hero" },
+  { label: "About", id: "about" },
+  { label: "Reviews", id: "reviews" },
+  { label: "Reserve", id: "reserve" },
 ];
 
-const DESKTOP_LINK_CLASS =
+const DESKTOP_LINK_BASE =
   "inline-block rounded-md border-2 border-black bg-white px-4 py-2 text-sm font-extrabold uppercase tracking-wide text-black shadow-neubrutal transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+
+const MOBILE_LINK_BASE =
+  "block rounded-md border-2 border-black bg-white px-4 py-3 text-center text-sm font-extrabold uppercase tracking-wide text-black shadow-neubrutal transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("hero");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
+    );
+
+    NAV_ITEMS.forEach((item) => {
+      const el = document.getElementById(item.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 bg-transparent">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-2 py-0">
-        <Link href="/" className="order-first shrink-0 -mt-10">
+        <ScrollLink
+          id="hero"
+          aria-label="Domingo — back to top"
+          className="order-first shrink-0 -mt-10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
           <Image
             src={asset("/domingo.svg")}
-            alt="Domingo"
+            alt=""
             width={150}
             height={56}
             className="h-50 w-auto"
             priority
           />
-        </Link>
+        </ScrollLink>
 
         <ul className="hidden items-center gap-3 self-start mt-10 md:flex">
           {NAV_ITEMS.map((item) => (
-            <li key={item.label}>
-              <Link href={item.href} className={DESKTOP_LINK_CLASS}>
+            <li key={item.id}>
+              <ScrollLink
+                id={item.id}
+                aria-current={active === item.id ? "true" : undefined}
+                className={`${DESKTOP_LINK_BASE} ${
+                  active === item.id ? "bg-brand text-white" : ""
+                }`}
+              >
                 {item.label}
-              </Link>
+              </ScrollLink>
             </li>
           ))}
         </ul>
@@ -88,14 +122,16 @@ export default function Navbar() {
             className="mt-2 space-y-2 rounded-lg border-2 border-black bg-cream p-3 shadow-neubrutal"
           >
             {NAV_ITEMS.map((item) => (
-              <li key={item.label}>
-                <Link
-                  href={item.href}
+              <li key={item.id}>
+                <ScrollLink
+                  id={item.id}
                   onClick={() => setOpen(false)}
-                  className="block rounded-md border-2 border-black bg-white px-4 py-3 text-center text-sm font-extrabold uppercase tracking-wide text-black shadow-neubrutal transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                  className={`${MOBILE_LINK_BASE} ${
+                    active === item.id ? "bg-brand text-white" : ""
+                  }`}
                 >
                   {item.label}
-                </Link>
+                </ScrollLink>
               </li>
             ))}
           </ul>
