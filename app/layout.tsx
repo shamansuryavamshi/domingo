@@ -6,8 +6,12 @@ import Navbar from "@/components/navbar";
 const bodyGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Domingo — Sweets Every Sunday",
-  description: "Homemade sweets, sold every Sunday.",
+  title: {
+    default: "DOMINGO — Sunday Dessert Studio",
+    template: "%s",
+  },
+  description:
+    "DOMINGO is a Sunday dessert studio. One handcrafted dessert every Sunday, made in a batch of five pieces. When it's gone, it's gone.",
 };
 
 export default function RootLayout({
