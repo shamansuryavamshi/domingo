@@ -5,10 +5,13 @@ export default function Reviews() {
   const rest = reviews.filter((review) => review.id !== featured?.id);
 
   return (
-    <section id="reviews" className="scroll-mt-20 border-t-[3px] border-black bg-brand font-body text-white">
+    <section
+      id="reviews"
+      className="scroll-mt-20 border-t-[3px] border-black bg-[#F8F4E8] font-body text-[#111111]"
+    >
       <div className="px-6 py-24 md:px-12 md:py-32">
         <div className="mb-8 flex">
-          <div className="inline-flex items-center gap-2.5 rounded-lg border-[3px] border-black bg-cream px-3.5 py-1.5 shadow-[4px_4px_0_0_#000]">
+          <div className="inline-flex items-center gap-2.5 rounded-lg border-[3px] border-black bg-white px-3.5 py-1.5 shadow-[4px_4px_0_0_#000]">
             <svg
               viewBox="0 0 24 24"
               className="h-4 w-4 shrink-0"
@@ -39,7 +42,7 @@ export default function Reviews() {
 
       <div className="px-6 pb-24 md:px-12 md:pb-32">
         {featured && (
-          <article className="mx-auto max-w-7xl rounded-lg border-[3px] border-black bg-cream p-8 text-black shadow-[4px_4px_0_0_#000] md:p-14">
+          <article className="mx-auto max-w-7xl rounded-lg border-[3px] border-black bg-white p-8 text-black shadow-[4px_4px_0_0_#000] md:p-14">
             <p className="font-black leading-none text-brand" aria-hidden="true">
               &ldquo;
             </p>

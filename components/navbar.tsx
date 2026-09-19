@@ -13,10 +13,10 @@ const NAV_ITEMS = [
 ];
 
 const DESKTOP_LINK_BASE =
-  "inline-block rounded-md border-2 border-black bg-white px-4 py-2 text-sm font-extrabold uppercase tracking-wide text-black shadow-neubrutal transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+  "inline-block rounded-md border-2 border-[#111111] bg-[#F8F4E8] px-4 py-2 text-sm font-extrabold uppercase tracking-wide text-[#111111] shadow-[4px_4px_0_0_#111111] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
 
 const MOBILE_LINK_BASE =
-  "block rounded-md border-2 border-black bg-white px-4 py-3 text-center text-sm font-extrabold uppercase tracking-wide text-black shadow-neubrutal transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black";
+  "block rounded-md border-2 border-[#111111] bg-[#F8F4E8] px-4 py-3 text-center text-sm font-extrabold uppercase tracking-wide text-[#111111] shadow-[4px_4px_0_0_#111111] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -66,9 +66,7 @@ export default function Navbar() {
               <ScrollLink
                 id={item.id}
                 aria-current={active === item.id ? "true" : undefined}
-                className={`${DESKTOP_LINK_BASE} ${
-                  active === item.id ? "bg-brand text-white" : ""
-                }`}
+                className={DESKTOP_LINK_BASE}
               >
                 {item.label}
               </ScrollLink>
@@ -82,7 +80,7 @@ export default function Navbar() {
           aria-expanded={open}
           aria-controls="mobile-nav-menu"
           onClick={() => setOpen((v) => !v)}
-          className="-mt-10 inline-flex items-center justify-center rounded-md border-2 border-black bg-white p-2.5 text-black shadow-neubrutal transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:hidden"
+          className="-mt-10 inline-flex items-center justify-center rounded-md border-2 border-[#111111] bg-[#F8F4E8] p-2.5 text-[#111111] shadow-[4px_4px_0_0_#111111] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:hidden"
         >
           {open ? (
             <svg
@@ -119,16 +117,14 @@ export default function Navbar() {
         <div className="mx-auto w-full max-w-7xl px-2 md:hidden">
           <ul
             id="mobile-nav-menu"
-            className="mt-2 space-y-2 rounded-lg border-2 border-black bg-cream p-3 shadow-neubrutal"
+            className="mt-2 space-y-2 rounded-lg border-2 border-[#111111] bg-[#F8F4E8] p-3 shadow-[4px_4px_0_0_#111111]"
           >
             {NAV_ITEMS.map((item) => (
               <li key={item.id}>
                 <ScrollLink
                   id={item.id}
                   onClick={() => setOpen(false)}
-                  className={`${MOBILE_LINK_BASE} ${
-                    active === item.id ? "bg-brand text-white" : ""
-                  }`}
+                  className={MOBILE_LINK_BASE}
                 >
                   {item.label}
                 </ScrollLink>
