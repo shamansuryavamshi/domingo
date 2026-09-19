@@ -7,9 +7,9 @@ import ScrollLink from "@/components/scroll-link";
 
 const NAV_ITEMS = [
   { label: "Home", id: "hero" },
-  { label: "About", id: "about" },
-  { label: "Reviews", id: "reviews" },
   { label: "Reserve", id: "reserve" },
+  { label: "Reviews", id: "reviews" },
+  { label: "About", id: "about" },
 ];
 
 const DESKTOP_LINK_BASE =
