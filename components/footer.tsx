@@ -2,7 +2,7 @@ import ScrollLink from "@/components/scroll-link";
 
 export default function Footer() {
   return (
-    <footer className="border-t-[3px] border-black bg-cream px-6 py-10 text-black md:px-12">
+    <footer className="bg-cream px-6 py-10 text-black md:px-12">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <p className="text-lg font-black uppercase tracking-tight">
           Domingo — Sunday Dessert Studio

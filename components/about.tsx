@@ -60,7 +60,7 @@ export default function About() {
         </p>
       </div>
 
-      <div className="border-y-[3px] border-black bg-cream px-6 py-16 text-black md:px-12 md:py-24">
+      <div className="bg-cream px-6 py-16 text-black md:px-12 md:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {STATS.map((stat) => (

@@ -7,7 +7,7 @@ export default function Reviews() {
   return (
     <section
       id="reviews"
-      className="scroll-mt-20 border-t-[3px] border-black bg-[#F8F4E8] font-body text-[#111111]"
+      className="scroll-mt-20 bg-[#F8F4E8] font-body text-[#111111]"
     >
       <div className="px-6 py-24 md:px-12 md:py-32">
         <div className="mb-8 flex">
