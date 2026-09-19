@@ -1,14 +1,25 @@
-import { reviews } from "@/lib/reviews";
+"use client";
+
+import { useEffect, useState } from "react";
+import { getReviews, MAX_SHOWN, type Review } from "@/lib/reviews";
+import ReviewForm from "@/components/review-form";
 
 export default function Reviews() {
+  const [reviews, setReviews] = useState<Review[]>([]);
+
+  useEffect(() => {
+    setReviews(getReviews());
+  }, []);
+
   const featured = reviews.find((review) => review.featured);
-  const rest = reviews.filter((review) => review.id !== featured?.id);
+  const rest = reviews.filter((review) => review.id !== featured?.id).slice(0, MAX_SHOWN - 1);
+
+  const handlePublished = (review: Review) => {
+    setReviews((current) => [review, ...current]);
+  };
 
   return (
-    <section
-      id="reviews"
-      className="scroll-mt-20 bg-[#F8F4E8] font-body text-[#111111]"
-    >
+    <section id="reviews" className="scroll-mt-20 bg-[#F8F4E8] font-body text-[#111111]">
       <div className="px-6 py-24 md:px-12 md:py-32">
         <div className="mb-8 flex">
           <div className="inline-flex items-center gap-2.5 rounded-lg border-[3px] border-black bg-white px-3.5 py-1.5 shadow-[4px_4px_0_0_#000]">
@@ -41,6 +52,12 @@ export default function Reviews() {
       </div>
 
       <div className="px-6 pb-24 md:px-12 md:pb-32">
+        {reviews.length === 0 && (
+          <p className="mx-auto max-w-7xl rounded-lg border-[3px] border-black bg-white p-8 text-center text-lg font-bold leading-relaxed shadow-[4px_4px_0_0_#000] md:p-14">
+            No reviews yet. Be the first to make it to Sunday and write one below.
+          </p>
+        )}
+
         {featured && (
           <article className="mx-auto max-w-7xl rounded-lg border-[3px] border-black bg-white p-8 text-black shadow-[4px_4px_0_0_#000] md:p-14">
             <p className="font-black leading-none text-brand" aria-hidden="true">
@@ -85,6 +102,10 @@ export default function Reviews() {
             ))}
           </div>
         )}
+
+        <div className="mx-auto mt-10 max-w-7xl">
+          <ReviewForm onPublished={handlePublished} />
+        </div>
       </div>
     </section>
   );

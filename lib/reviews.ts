@@ -7,36 +7,56 @@ export interface Review {
   featured?: boolean;
 }
 
+export interface ReviewPayload {
+  name: string;
+  product?: string;
+  text: string;
+}
+
 export const MAX_SHOWN = 4;
 
-export const reviews: Review[] = [
-  {
-    id: "placeholder-1",
-    text: "Add the first Domingo review here. Swap this placeholder for a real customer's words — the layout and typography are already built around it.",
-    name: "First reviewer",
+const endpoint = process.env.NEXT_PUBLIC_REVIEW_ENDPOINT;
+
+const staticReviews: Review[] = [];
+
+let sessionReviews: Review[] = [];
+
+export function getReviews(): Review[] {
+  return [...staticReviews, ...sessionReviews];
+}
+
+export async function submitReview(
+  payload: ReviewPayload,
+): Promise<{ review: Review; storedServerSide: boolean }> {
+  const review: Review = {
+    id: `customer-${Date.now()}`,
+    text: payload.text.trim(),
+    name: payload.name.trim(),
     date: "Sunday",
-    product: "Crème Brûlée",
-    featured: true,
-  },
-  {
-    id: "placeholder-2",
-    text: "Add another review in lib/reviews.ts. Replace this text and the display name with a real review when it lands.",
-    name: "Second reviewer",
-    date: "Sunday",
-    product: "Weekly special",
-  },
-  {
-    id: "placeholder-3",
-    text: "Reviews are pulled from this data file — no page code needs to change when new words arrive.",
-    name: "Third reviewer",
-    date: "Sunday",
-    product: "Weekly special",
-  },
-  {
-    id: "placeholder-4",
-    text: "Keep the tone short, personal and specific — the studio makes a single dessert each week.",
-    name: "Fourth reviewer",
-    date: "Sunday",
-    product: "Weekly special",
-  },
-];
+    product: payload.product?.trim() || "This Sunday's dessert",
+  };
+
+  if (endpoint) {
+    let response: Response;
+    try {
+      response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch {
+      throw new Error("Could not reach the reviews service.");
+    }
+
+    if (!response.ok) {
+      throw new Error("The reviews service rejected this request.");
+    }
+
+    sessionReviews = [review, ...sessionReviews];
+    return { review, storedServerSide: true };
+  }
+
+  await new Promise((resolve) => setTimeout(resolve, 900));
+  sessionReviews = [review, ...sessionReviews];
+  return { review, storedServerSide: false };
+}
