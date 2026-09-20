@@ -1,7 +1,39 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { asset } from "@/lib/base-path";
+import { fetchDomingoHero, type DomingoHero } from "@/lib/domingo";
+
+type HeroState = DomingoHero | null;
+
+function splitName(name: string): { line1: string; line2: string } {
+  const parts = (name || "").split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return { line1: "Creme", line2: "Brulee" };
+  if (parts.length === 1) return { line1: parts[0], line2: "" };
+  return { line1: parts[0], line2: parts.slice(1).join(" ") };
+}
 
 export default function Hero() {
+  const [hero, setHero] = useState<HeroState>(null);
+  const { line1, line2 } = splitName(hero?.name || "Creme Brulee");
+  const image = hero?.image || "";
+
+  useEffect(() => {
+    let active = true;
+    fetchDomingoHero().then((h) => {
+      if (active) setHero(h);
+    });
+    const timer = setInterval(async () => {
+      const h = await fetchDomingoHero();
+      if (active) setHero(h);
+    }, 60000);
+    return () => {
+      active = false;
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden bg-brand">
       <Image
@@ -15,14 +47,23 @@ export default function Hero() {
       />
 
       <div className="absolute inset-0 animate-float">
-        <Image
-          src={asset("/creme.svg")}
-          alt=""
-          fill
-          className="pointer-events-none object-cover"
-          style={{ transform: "translate(27%, 7%) scale(1)" }}
-          sizes="100vw"
-        />
+        {image ? (
+          <img
+            src={image}
+            alt=""
+            className="pointer-events-none object-cover"
+            style={{ transform: "translate(27%, 7%) scale(1)", width: "100%", height: "100%" }}
+          />
+        ) : (
+          <Image
+            src={asset("/creme.svg")}
+            alt=""
+            fill
+            className="pointer-events-none object-cover"
+            style={{ transform: "translate(27%, 7%) scale(1)" }}
+            sizes="100vw"
+          />
+        )}
       </div>
 
       <div className="pointer-events-none absolute inset-0 z-10 -mt-28 flex flex-col justify-center font-body">
@@ -53,9 +94,13 @@ export default function Hero() {
 
         <div className="-mt-8 translate-y-[25%]">
           <h2 className="px-6 text-left text-[clamp(3rem,10vw,8rem)] font-black uppercase leading-[0.9] tracking-tight text-white md:px-12 md:text-[10rem]">
-            <span>Creme</span>
-            <br />
-            <span className="block text-[1.35em]">Brulee</span>
+            <span>{line1}</span>
+            {line2 && (
+              <>
+                <br />
+                <span className="block text-[1.35em]">{line2}</span>
+              </>
+            )}
           </h2>
         </div>
 
