@@ -5,7 +5,7 @@ export type DomingoHero = {
 
 const RAW_DATA_URL =
   process.env.NEXT_PUBLIC_DOMINGO_DATA_URL ||
-  "https://raw.githubusercontent.com/shamansuryavamshi/MyBusiness/master/domingo-data.json";
+  "https://my-business-iota-opal.vercel.app/api/domingo";
 
 export async function fetchDomingoHero(): Promise<DomingoHero | null> {
   try {
