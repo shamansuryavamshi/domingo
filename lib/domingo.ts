@@ -3,12 +3,11 @@ export type DomingoHero = {
   image: string;
 };
 
-const RAW_DATA_URL =
-  process.env.NEXT_PUBLIC_DOMINGO_DATA_URL ||
-  "https://my-business-iota-opal.vercel.app/api/domingo";
+const RAW_DATA_URL = process.env.NEXT_PUBLIC_DOMINGO_DATA_URL;
 
 export async function fetchDomingoHero(): Promise<DomingoHero | null> {
   try {
+    if (!RAW_DATA_URL) return null;
     const res = await fetch(RAW_DATA_URL, { cache: "no-store" });
     if (!res.ok) return null;
     const data = await res.json();
