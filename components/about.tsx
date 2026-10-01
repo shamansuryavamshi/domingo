@@ -9,21 +9,6 @@ const STATS = [
   { value: "When it's gone", label: "It's gone" },
 ];
 
-const PILLARS = [
-  {
-    title: "Small-batch",
-    text: "Five pieces. No more, no restocks. The whole batch fits in one hand.",
-  },
-  {
-    title: "Handcrafted",
-    text: "Every dessert is made by hand, start to finish. No assembly lines, no shortcuts.",
-  },
-  {
-    title: "Quality over quantity",
-    text: "One honest dessert done properly beats a dozen that no one remembers.",
-  },
-];
-
 export default function About() {
   return (
     <section id="about" className="scroll-mt-20 bg-brand font-body text-white">
@@ -116,44 +101,6 @@ export default function About() {
               </p>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="px-6 py-16 md:px-12 md:py-24">
-        <div className="mx-auto max-w-7xl">
-          <p className="mb-4 inline-block rounded-lg border-[3px] border-black bg-cream px-3.5 py-1.5 text-xs font-black uppercase tracking-[0.18em] text-black shadow-[4px_4px_0_0_#000]">
-            The philosophy
-          </p>
-          <h3 className="mb-12 text-[clamp(2rem,5vw,4rem)] font-black uppercase leading-[0.95] tracking-tight">
-            Fewer, better,
-            <br />
-            <span className="text-cream/90">by hand</span>
-          </h3>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {PILLARS.map((pillar, index) => (
-              <div
-                key={pillar.title}
-                className="flex flex-col rounded-lg border-[3px] border-black bg-white p-6 text-black shadow-[4px_4px_0_0_#000]"
-              >
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-brand">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h4 className="mt-4 text-2xl font-black uppercase tracking-tight">
-                  {pillar.title}
-                </h4>
-                <p className="mt-3 text-sm font-semibold leading-relaxed md:text-base">
-                  {pillar.text}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-12 max-w-3xl text-base font-semibold leading-relaxed md:text-lg">
-            The studio is based in Bangalore. The kitchen may move — the Sunday
-            ritual stays. What never changes is the count: one dessert, five
-            pieces, one day a week.
-          </p>
         </div>
       </div>
     </section>
