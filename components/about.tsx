@@ -51,7 +51,7 @@ export default function About() {
           </div>
 
           <Image
-            src={asset("/shaman.png")}
+            src={asset("/shaman.svg")}
             alt="Shaman Suryavamshi, the Sunday dessert studio"
             width={1111}
             height={1416}
