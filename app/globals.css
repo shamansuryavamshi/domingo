@@ -60,8 +60,8 @@ html.lenis body {
 @media screen and (max-width: 767px) {
   #hero {
     min-height: 0;
-    padding-top: clamp(12rem, 32vh, 15rem);
-    padding-bottom: clamp(4rem, 12vw, 6rem);
+    padding-top: clamp(11rem, 28vh, 14rem);
+    padding-bottom: calc(clamp(4rem, 12vw, 6rem) + env(safe-area-inset-bottom, 0px));
     background-color: var(--color-cream);
   }
 
@@ -76,9 +76,13 @@ html.lenis body {
 
   .mobile-hero__inner {
     width: 100%;
-    max-width: 26rem;
+    max-width: 30rem;
     margin: 0 auto;
-    padding: 0 clamp(1.125rem, 5.5vw, 1.625rem);
+    padding: 0 clamp(1rem, 4vw, 1.75rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.5rem, 5vw, 2.5rem);
   }
 
   .mobile-hero__nameplate {
@@ -86,9 +90,9 @@ html.lenis body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: min(100%, 22rem);
+    width: min(100%, 24rem);
     min-height: clamp(6.5rem, 24vw, 8rem);
-    margin: 0 auto;
+    margin: 0;
     padding: clamp(1.4rem, 6vw, 1.9rem) clamp(1.9rem, 9vw, 2.8rem);
   }
 
@@ -106,7 +110,7 @@ html.lenis body {
     margin: 0;
     color: #111111;
     font-family: var(--font-body);
-    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    font-size: clamp(1.75rem, 8vw, 2.6rem);
     font-weight: 900;
     line-height: 0.9;
     letter-spacing: -0.025em;
@@ -119,18 +123,19 @@ html.lenis body {
   .mobile-hero__stage {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1;
-    margin: clamp(1.5rem, 6vw, 2.5rem) auto 0;
+    max-width: 26rem;
+    aspect-ratio: 1 / 1.2;
+    margin: 0 auto;
   }
 
   .mobile-hero__star {
     position: absolute;
-    top: 113%;
-    left: 63%;
+    top: 50%;
+    left: 50%;
     display: block;
-    width: 476%;
+    width: 240%;
     max-width: none;
-    height: 476%;
+    height: 240%;
     transform: translate(-50%, -50%);
     object-fit: contain;
     pointer-events: none;
@@ -140,10 +145,10 @@ html.lenis body {
 
   .mobile-hero__dessert-position {
     position: absolute;
-    top: 105%;
-    left: 49%;
-    width: 292%;
-    height: 292%;
+    top: 50%;
+    left: 50%;
+    width: 205%;
+    height: 205%;
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 2;
@@ -177,7 +182,7 @@ html.lenis body {
   .mobile-hero__cta-row {
     display: flex;
     justify-content: center;
-    margin-top: clamp(1.75rem, 7vw, 2.5rem);
+    margin-top: 0;
   }
 
   .mobile-hero__cta {
