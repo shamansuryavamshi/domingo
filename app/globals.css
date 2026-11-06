@@ -207,4 +207,110 @@ html.lenis body {
     outline: 2px solid #111111;
     outline-offset: 4px;
   }
+
+  .mobile-hero__tune-fab {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    z-index: 60;
+    padding: 10px 14px;
+    border: 2px solid #111111;
+    background: #fff8e7;
+    box-shadow: 4px 4px 0 0 #111111;
+    color: #111111;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .mobile-hero__tune {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    z-index: 60;
+    max-height: 62vh;
+    overflow-y: auto;
+    padding: 14px 16px 16px;
+    border: 2px solid #111111;
+    background: #fff8e7;
+    box-shadow: 4px 4px 0 0 #111111;
+    color: #111111;
+    font-family: var(--font-body);
+  }
+
+  .mobile-hero__tune-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .mobile-hero__tune-title {
+    margin-right: auto;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .mobile-hero__tune-button {
+    padding: 4px 8px;
+    border: 2px solid #111111;
+    background: #fff8e7;
+    color: #111111;
+    font: inherit;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .mobile-hero__tune-close {
+    padding: 0 2px;
+    border: 0;
+    background: transparent;
+    color: #111111;
+    font: inherit;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .mobile-hero__tune-subtitle {
+    margin: 12px 0 4px;
+    color: #116f59;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .mobile-hero__tune-row {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .mobile-hero__tune-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mobile-hero__tune-label span {
+    color: #116f59;
+  }
+
+  .mobile-hero__tune-range {
+    width: 100%;
+    margin-top: 4px;
+    accent-color: #116f59;
+  }
 }
