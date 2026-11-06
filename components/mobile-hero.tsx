@@ -68,6 +68,7 @@ export default function MobileHero({
   const [tune, setTune] = useState<Tune>(DEFAULT_TUNE);
   const [tuneOpen, setTuneOpen] = useState(false);
   const [tuneCollapsed, setTuneCollapsed] = useState(false);
+  const [tuneTab, setTuneTab] = useState<"star" | "dessert">("star");
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -233,51 +234,72 @@ export default function MobileHero({
             </button>
           </div>
 
-          <p className="mobile-hero__tune-subtitle">Star</p>
-          <Slider
-            label="Size"
-            value={tune.starSize}
-            min={80}
-            max={360}
-            onChange={(value) => update("starSize", value)}
-          />
-          <Slider
-            label="Position X"
-            value={tune.starX}
-            min={-50}
-            max={150}
-            onChange={(value) => update("starX", value)}
-          />
-          <Slider
-            label="Position Y"
-            value={tune.starY}
-            min={-50}
-            max={150}
-            onChange={(value) => update("starY", value)}
-          />
+          <div className="mobile-hero__tune-tabs">
+            <button
+              type="button"
+              className={`mobile-hero__tune-tab${tuneTab === "star" ? " is-active" : ""}`}
+              onClick={() => setTuneTab("star")}
+            >
+              Star
+            </button>
+            <button
+              type="button"
+              className={`mobile-hero__tune-tab${tuneTab === "dessert" ? " is-active" : ""}`}
+              onClick={() => setTuneTab("dessert")}
+            >
+              Creme
+            </button>
+          </div>
 
-          <p className="mobile-hero__tune-subtitle">Creme brulee</p>
-          <Slider
-            label="Size"
-            value={tune.dessertSize}
-            min={80}
-            max={360}
-            onChange={(value) => update("dessertSize", value)}
-          />
-          <Slider
-            label="Position X"
-            value={tune.dessertX}
-            min={-50}
-            max={150}
-            onChange={(value) => update("dessertX", value)}
-          />
-          <Slider
-            label="Position Y"
-            value={tune.dessertY}
-            min={-50}
-            max={150}
-            onChange={(value) => update("dessertY", value)}
-          />
+          {tuneTab === "star" ? (
+            <>
+              <Slider
+                label="Size"
+                value={tune.starSize}
+                min={80}
+                max={600}
+                onChange={(value) => update("starSize", value)}
+              />
+              <Slider
+                label="Position X"
+                value={tune.starX}
+                min={-50}
+                max={150}
+                onChange={(value) => update("starX", value)}
+              />
+              <Slider
+                label="Position Y"
+                value={tune.starY}
+                min={-50}
+                max={150}
+                onChange={(value) => update("starY", value)}
+              />
+            </>
+          ) : (
+            <>
+              <Slider
+                label="Size"
+                value={tune.dessertSize}
+                min={80}
+                max={500}
+                onChange={(value) => update("dessertSize", value)}
+              />
+              <Slider
+                label="Position X"
+                value={tune.dessertX}
+                min={-50}
+                max={150}
+                onChange={(value) => update("dessertX", value)}
+              />
+              <Slider
+                label="Position Y"
+                value={tune.dessertY}
+                min={-50}
+                max={150}
+                onChange={(value) => update("dessertY", value)}
+              />
+            </>
+          )}
         </div>
       )}
     </div>
