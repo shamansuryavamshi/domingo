@@ -8,12 +8,12 @@ const NAMEPLATE_PATH =
   "M 200 14 C 246 12 292 16 330 30 C 360 41 382 56 388 76 C 394 96 382 114 356 126 C 330 138 296 142 258 144 C 220 146 184 146 148 142 C 112 138 78 132 54 118 C 30 104 18 86 24 66 C 30 46 48 32 76 24 C 110 14 154 16 200 14 Z";
 
 const DEFAULT_TUNE = {
-  starSize: 225,
-  starX: 62,
-  starY: 50,
-  dessertSize: 190,
-  dessertX: 50,
-  dessertY: 50,
+  starSize: 476,
+  starX: 63,
+  starY: 113,
+  dessertSize: 292,
+  dessertX: 49,
+  dessertY: 105,
 };
 
 type Tune = typeof DEFAULT_TUNE;
@@ -73,7 +73,7 @@ export default function MobileHero({
 
   useEffect(() => {
     try {
-      const saved = window.localStorage.getItem("domingo-mobile-tune");
+      const saved = window.localStorage.getItem("domingo-mobile-tune-v2");
       if (saved) {
         setTune({ ...DEFAULT_TUNE, ...JSON.parse(saved) });
       }
@@ -90,7 +90,7 @@ export default function MobileHero({
   useEffect(() => {
     if (!tuneOpen) return;
     try {
-      window.localStorage.setItem("domingo-mobile-tune", JSON.stringify(tune));
+      window.localStorage.setItem("domingo-mobile-tune-v2", JSON.stringify(tune));
     } catch {
       // ignore unavailable storage
     }

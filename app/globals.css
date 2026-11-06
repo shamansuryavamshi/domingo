@@ -125,12 +125,12 @@ html.lenis body {
 
   .mobile-hero__star {
     position: absolute;
-    top: 50%;
-    left: 62%;
+    top: 113%;
+    left: 63%;
     display: block;
-    width: 225%;
+    width: 476%;
     max-width: none;
-    height: 225%;
+    height: 476%;
     transform: translate(-50%, -50%);
     object-fit: contain;
     pointer-events: none;
@@ -140,10 +140,10 @@ html.lenis body {
 
   .mobile-hero__dessert-position {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 190%;
-    height: 190%;
+    top: 105%;
+    left: 49%;
+    width: 292%;
+    height: 292%;
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 2;
