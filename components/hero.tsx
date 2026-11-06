@@ -2,10 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import MobileHero from "@/components/mobile-hero";
 import { asset } from "@/lib/base-path";
 import { fetchDomingoHero, type DomingoHero } from "@/lib/domingo";
 
 type HeroState = DomingoHero | null;
+
+interface HeroProps {
+  mobileCtaLabel?: string;
+  mobileCtaTarget?: string;
+}
 
 function splitName(name: string): { line1: string; line2: string } {
   const parts = (name || "").split(/\s+/).filter(Boolean);
@@ -14,7 +20,10 @@ function splitName(name: string): { line1: string; line2: string } {
   return { line1: parts[0], line2: parts.slice(1).join(" ") };
 }
 
-export default function Hero() {
+export default function Hero({
+  mobileCtaLabel = "Reserve your piece",
+  mobileCtaTarget = "reserve",
+}: HeroProps = {}) {
   const [hero, setHero] = useState<HeroState>(null);
   const { line1, line2 } = splitName(hero?.name || "Creme Brulee");
   const image = hero?.image || "";
@@ -112,6 +121,13 @@ export default function Hero() {
           </p>
         </div>
       </div>
+
+      <MobileHero
+        name={hero?.name || "Creme Brulee"}
+        image={image}
+        ctaLabel={mobileCtaLabel}
+        ctaTarget={mobileCtaTarget}
+      />
     </section>
   );
 }
