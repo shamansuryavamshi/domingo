@@ -5,6 +5,10 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "postbuild": "node scripts/inject-security-meta.mjs",
+    "security:meta": "node scripts/inject-security-meta.mjs",
+    "security:meta:verify": "node scripts/inject-security-meta.mjs --verify",
+    "test": "node --test scripts/inject-security-meta.test.mjs",
     "start": "next start",
     "lint": "next lint"
   },
