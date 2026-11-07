@@ -20,6 +20,31 @@ function splitName(name: string): { line1: string; line2: string } {
   return { line1: parts[0], line2: parts.slice(1).join(" ") };
 }
 
+function HeroBadge() {
+  return (
+    <div className="inline-flex items-center gap-2.5 rounded-lg border-[3px] border-black bg-cream px-3.5 py-1.5 shadow-[4px_4px_0_0_#000]">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4 shrink-0"
+        fill="none"
+        stroke="#f97316"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <rect x="3" y="4" width="18" height="18" rx="2" />
+        <line x1="16" y1="2" x2="16" y2="6" />
+        <line x1="8" y1="2" x2="8" y2="6" />
+        <line x1="3" y1="10" x2="21" y2="10" />
+      </svg>
+      <span className="text-xs font-black uppercase tracking-[0.18em] text-black md:text-sm">
+        This week&apos;s special
+      </span>
+    </div>
+  );
+}
+
 export default function Hero({
   mobileCtaLabel = "Reserve your piece",
   mobileCtaTarget = "reserve",
@@ -27,6 +52,7 @@ export default function Hero({
   const [hero, setHero] = useState<HeroState>(null);
   const { line1, line2 } = splitName(hero?.name || "Creme Brulee");
   const image = hero?.image || "";
+  const isFallbackDessert = !image;
 
   useEffect(() => {
     let active = true;
@@ -49,13 +75,13 @@ export default function Hero({
         src={asset("/star.svg")}
         alt=""
         fill
-        className="pointer-events-none object-cover"
+        className="pointer-events-none object-cover hero__desktop"
         style={{ transform: "translate(33%, 12%) scale(2.35)" }}
         sizes="100vw"
         priority
       />
 
-      <div className="absolute inset-0 animate-float">
+      <div className="absolute inset-0 animate-float hero__desktop">
         {image ? (
           <img
             src={image}
@@ -75,30 +101,11 @@ export default function Hero({
         )}
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-10 -mt-28 flex flex-col justify-center font-body">
+      <div className="pointer-events-none absolute inset-0 z-10 -mt-28 flex flex-col justify-center font-body hero__desktop">
         <div
           className="mb-8 flex translate-x-[1%] translate-y-[200%] px-6 md:mb-10 md:px-12"
         >
-          <div className="inline-flex items-center gap-2.5 rounded-lg border-[3px] border-black bg-cream px-3.5 py-1.5 shadow-[4px_4px_0_0_#000]">
-            <svg
-              viewBox="0 0 24 24"
-              className="h-4 w-4 shrink-0"
-              fill="none"
-              stroke="#f97316"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <rect x="3" y="4" width="18" height="18" rx="2" />
-              <line x1="16" y1="2" x2="16" y2="6" />
-              <line x1="8" y1="2" x2="8" y2="6" />
-              <line x1="3" y1="10" x2="21" y2="10" />
-            </svg>
-            <span className="text-xs font-black uppercase tracking-[0.18em] text-black md:text-sm">
-              This week&apos;s special
-            </span>
-          </div>
+          <HeroBadge />
         </div>
 
         <div className="-mt-8 translate-y-[25%]">
@@ -119,6 +126,45 @@ export default function Hero({
             <br />
             When it&apos;s gone, it&apos;s gone.
           </p>
+        </div>
+      </div>
+
+      <div className="tablet-hero">
+        <img
+          src={asset("/star.svg")}
+          alt=""
+          aria-hidden="true"
+          className="tablet-hero__star"
+        />
+        <div className="tablet-hero__inner">
+          <div className="tablet-hero__content">
+            <div className="tablet-hero__badge-row">
+              <HeroBadge />
+            </div>
+            <h2 className="tablet-hero__title">
+              <span>{line1}</span>
+              {line2 && (
+                <span className="tablet-hero__title-line2">{line2}</span>
+              )}
+            </h2>
+            <p className="tablet-hero__desc">
+              One handcrafted dessert every Sunday. Limited pieces.
+              <br />
+              When it&apos;s gone, it&apos;s gone.
+            </p>
+          </div>
+          <div className="tablet-hero__visual">
+            <div
+              className={`tablet-hero__dessert${isFallbackDessert ? " is-fallback" : ""}`}
+            >
+              <img
+                src={image || asset("/creme.svg")}
+                alt=""
+                className="tablet-hero__dessert-img animate-float"
+                decoding="async"
+              />
+            </div>
+          </div>
         </div>
       </div>
 

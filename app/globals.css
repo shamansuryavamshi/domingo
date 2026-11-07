@@ -345,3 +345,131 @@ html.lenis body {
     accent-color: #116f59;
   }
 }
+
+.tablet-hero {
+  display: none;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .hero__desktop {
+    display: none;
+  }
+
+  .tablet-hero {
+    position: relative;
+    display: block;
+    min-height: 100svh;
+    padding: clamp(9rem, 15vh, 10.5rem) clamp(1.5rem, 3vw, 2.5rem)
+      clamp(2.5rem, 5vh, 4rem);
+    overflow: hidden;
+  }
+
+  .tablet-hero__star {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(33%, 12%) scale(2.35);
+    transform-origin: center;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .tablet-hero__inner {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2rem);
+    width: 100%;
+    max-width: 58rem;
+    min-height: clamp(22rem, 56vh, 36rem);
+    margin: 0 auto;
+  }
+
+  .tablet-hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(0.9rem, 2.2vw, 1.5rem);
+    min-width: 0;
+    padding-left: clamp(0rem, 1.5vw, 1rem);
+  }
+
+  .tablet-hero__badge-row {
+    display: flex;
+    align-items: center;
+  }
+
+  .tablet-hero__title {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: clamp(3.25rem, 8vw, 5.5rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.025em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .tablet-hero__title span {
+    display: block;
+  }
+
+  .tablet-hero__title-line2 {
+    font-size: 1.35em;
+  }
+
+  .tablet-hero__desc {
+    max-width: 30rem;
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  .tablet-hero__visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: clamp(17rem, 42vw, 28rem);
+  }
+
+  .tablet-hero__dessert {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .tablet-hero__dessert.is-fallback {
+    aspect-ratio: 543 / 810;
+    transform: translate(-50%, calc(-50% - 3.46%));
+  }
+
+  .tablet-hero__dessert-img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .tablet-hero__dessert.is-fallback .tablet-hero__dessert-img {
+    object-fit: cover;
+    object-position: 50.4% 50%;
+  }
+}
