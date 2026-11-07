@@ -130,12 +130,6 @@ export default function Hero({
       </div>
 
       <div className="tablet-hero">
-        <img
-          src={asset("/star.svg")}
-          alt=""
-          aria-hidden="true"
-          className="tablet-hero__star"
-        />
         <div className="tablet-hero__inner">
           <div className="tablet-hero__content">
             <div className="tablet-hero__badge-row">
@@ -154,6 +148,12 @@ export default function Hero({
             </p>
           </div>
           <div className="tablet-hero__visual">
+            <img
+              src={asset("/star.svg")}
+              alt=""
+              aria-hidden="true"
+              className="tablet-hero__star"
+            />
             <div
               className={`tablet-hero__dessert${isFallbackDessert ? " is-fallback" : ""}`}
             >

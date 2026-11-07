@@ -372,8 +372,7 @@ html.lenis body {
     max-width: none;
     height: 100%;
     object-fit: cover;
-    transform: translate(33%, 12%) scale(2.35);
-    transform-origin: center;
+    object-position: 38.2% 50%;
     pointer-events: none;
     user-select: none;
   }
@@ -382,11 +381,11 @@ html.lenis body {
     position: relative;
     z-index: 10;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
     align-items: center;
     gap: clamp(1rem, 3vw, 2rem);
     width: 100%;
-    max-width: 58rem;
+    max-width: 66rem;
     min-height: clamp(22rem, 56vh, 36rem);
     margin: 0 auto;
   }
@@ -438,26 +437,24 @@ html.lenis body {
 
   .tablet-hero__visual {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     min-width: 0;
-    min-height: clamp(17rem, 42vw, 28rem);
   }
 
   .tablet-hero__dessert {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
+    top: 46.8%;
+    left: 55.2%;
+    z-index: 1;
+    width: 72%;
     aspect-ratio: 1 / 1;
     transform: translate(-50%, -50%);
     pointer-events: none;
   }
 
   .tablet-hero__dessert.is-fallback {
-    aspect-ratio: 543 / 810;
-    transform: translate(-50%, calc(-50% - 3.46%));
+    aspect-ratio: 543 / 478;
   }
 
   .tablet-hero__dessert-img {
@@ -469,7 +466,11 @@ html.lenis body {
   }
 
   .tablet-hero__dessert.is-fallback .tablet-hero__dessert-img {
-    object-fit: cover;
-    object-position: 50.4% 50%;
+    position: absolute;
+    top: calc(-194 / 478 * 100%);
+    left: calc(-452 / 543 * 100%);
+    width: calc(1440 / 543 * 100%);
+    height: calc(810 / 478 * 100%);
+    object-fit: fill;
   }
 }
