@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import MobileHero from "@/components/mobile-hero";
+import TabletTune from "@/components/tablet-tune";
 import { asset } from "@/lib/base-path";
 import { fetchDomingoHero, type DomingoHero } from "@/lib/domingo";
 
@@ -52,7 +53,6 @@ export default function Hero({
   const [hero, setHero] = useState<HeroState>(null);
   const { line1, line2 } = splitName(hero?.name || "Creme Brulee");
   const image = hero?.image || "";
-  const isFallbackDessert = !image;
 
   useEffect(() => {
     let active = true;
@@ -71,45 +71,44 @@ export default function Hero({
 
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden bg-brand">
-      <Image
-        src={asset("/star.svg")}
-        alt=""
-        fill
-        className="pointer-events-none object-cover hero__desktop"
-        style={{ transform: "translate(33%, 12%) scale(2.35)" }}
-        sizes="100vw"
-        priority
-      />
+      <div className="hero__art hero__desktop" aria-hidden="true">
+        <Image
+          src={asset("/star.svg")}
+          alt=""
+          fill
+          className="pointer-events-none object-cover hero__star"
+          sizes="100vw"
+          priority
+        />
 
-      <div className="absolute inset-0 animate-float hero__desktop">
-        {image ? (
-          <img
-            src={image}
-            alt=""
-            className="pointer-events-none object-cover"
-            style={{ transform: "translate(27%, 7%) scale(1)", width: "100%", height: "100%" }}
-          />
-        ) : (
-          <Image
-            src={asset("/creme.svg")}
-            alt=""
-            fill
-            className="pointer-events-none object-cover"
-            style={{ transform: "translate(27%, 7%) scale(1)" }}
-            sizes="100vw"
-          />
-        )}
+        <div className="hero__dessert animate-float">
+          {image ? (
+            <img
+              src={image}
+              alt=""
+              className="hero__dessert-art"
+            />
+          ) : (
+            <Image
+              src={asset("/creme.svg")}
+              alt=""
+              fill
+              className="hero__dessert-art"
+              sizes="100vw"
+            />
+          )}
+        </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-10 -mt-28 flex flex-col justify-center font-body hero__desktop">
+      <div className="hero__copy pointer-events-none absolute inset-0 z-10 -mt-28 flex flex-col justify-center font-body hero__desktop">
         <div
-          className="mb-8 flex translate-x-[1%] translate-y-[200%] px-6 md:mb-10 md:px-12"
+          className="hero__badge-wrap mb-8 flex translate-x-[1%] translate-y-[200%] px-6 md:mb-10 md:px-12"
         >
           <HeroBadge />
         </div>
 
-        <div className="-mt-8 translate-y-[25%]">
-          <h2 className="px-6 text-left text-[clamp(3rem,10vw,8rem)] font-black uppercase leading-[0.9] tracking-tight text-white md:px-12 md:text-[10rem]">
+        <div className="hero__title-wrap -mt-8 translate-y-[25%]">
+          <h2 className="hero__title px-6 text-left text-[clamp(3rem,10vw,8rem)] font-black uppercase leading-[0.9] tracking-tight text-white md:px-12 md:text-[10rem]">
             <span>{line1}</span>
             {line2 && (
               <>
@@ -120,51 +119,12 @@ export default function Hero({
           </h2>
         </div>
 
-        <div className="mt-8 translate-y-[100%]">
-          <p className="max-w-3xl px-6 text-base font-semibold leading-relaxed text-white md:px-12 md:text-lg">
+        <div className="hero__desc-wrap mt-8 translate-y-[100%]">
+          <p className="hero__desc max-w-3xl px-6 text-base font-semibold leading-relaxed text-white md:px-12 md:text-lg">
             One handcrafted dessert every Sunday. Limited pieces.
             <br />
             When it&apos;s gone, it&apos;s gone.
           </p>
-        </div>
-      </div>
-
-      <div className="tablet-hero">
-        <div className="tablet-hero__inner">
-          <div className="tablet-hero__content">
-            <div className="tablet-hero__badge-row">
-              <HeroBadge />
-            </div>
-            <h2 className="tablet-hero__title">
-              <span>{line1}</span>
-              {line2 && (
-                <span className="tablet-hero__title-line2">{line2}</span>
-              )}
-            </h2>
-            <p className="tablet-hero__desc">
-              One handcrafted dessert every Sunday. Limited pieces.
-              <br />
-              When it&apos;s gone, it&apos;s gone.
-            </p>
-          </div>
-          <div className="tablet-hero__visual">
-            <img
-              src={asset("/star.svg")}
-              alt=""
-              aria-hidden="true"
-              className="tablet-hero__star"
-            />
-            <div
-              className={`tablet-hero__dessert${isFallbackDessert ? " is-fallback" : ""}`}
-            >
-              <img
-                src={image || asset("/creme.svg")}
-                alt=""
-                className="tablet-hero__dessert-img animate-float"
-                decoding="async"
-              />
-            </div>
-          </div>
         </div>
       </div>
 
@@ -174,6 +134,8 @@ export default function Hero({
         ctaLabel={mobileCtaLabel}
         ctaTarget={mobileCtaTarget}
       />
+
+      <TabletTune />
     </section>
   );
 }

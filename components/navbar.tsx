@@ -60,7 +60,7 @@ export default function Navbar() {
           />
         </ScrollLink>
 
-        <ul className="hidden items-center gap-3 self-start mt-10 md:flex">
+        <ul className="nav__desktop-links hidden items-center gap-3 self-start mt-10 md:flex">
           {NAV_ITEMS.map((item) => (
             <li key={item.id}>
               <ScrollLink
@@ -80,7 +80,7 @@ export default function Navbar() {
           aria-expanded={open}
           aria-controls="mobile-nav-menu"
           onClick={() => setOpen((v) => !v)}
-          className="-mt-10 inline-flex items-center justify-center rounded-md border-2 border-[#111111] bg-[#F8F4E8] p-2.5 text-[#111111] shadow-[4px_4px_0_0_#111111] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:hidden"
+          className="nav__mobile-toggle -mt-10 inline-flex items-center justify-center rounded-md border-2 border-[#111111] bg-[#F8F4E8] p-2.5 text-[#111111] shadow-[4px_4px_0_0_#111111] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:hidden"
         >
           {open ? (
             <svg
@@ -114,7 +114,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="mx-auto w-full max-w-7xl px-2 md:hidden">
+        <div className="nav__mobile-menu mx-auto w-full max-w-7xl px-2 md:hidden">
           <ul
             id="mobile-nav-menu"
             className="mt-2 space-y-2 rounded-lg border-2 border-[#111111] bg-[#F8F4E8] p-3 shadow-[4px_4px_0_0_#111111]"
