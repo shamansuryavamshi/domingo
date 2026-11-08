@@ -17,6 +17,7 @@ const DEFAULT_TUNE = {
   titleScale: 100,
   descScale: 100,
   copyX: 0,
+  textY: 0,
 };
 
 type Tune = typeof DEFAULT_TUNE;
@@ -35,6 +36,7 @@ const VARIABLES: Record<TuneKey, { name: string; unit: string; factor: number }>
   titleScale: { name: "--tune-title-scale", unit: "", factor: 100 },
   descScale: { name: "--tune-desc-scale", unit: "", factor: 100 },
   copyX: { name: "--tune-copy-x", unit: "px", factor: 1 },
+  textY: { name: "--tablet-text-y", unit: "px", factor: 1 },
 };
 
 const TABLES = {
@@ -57,6 +59,7 @@ const TABLES = {
     { key: "titleScale", label: "Title size", min: 50, max: 150 },
     { key: "descScale", label: "Text size", min: 50, max: 150 },
     { key: "copyX", label: "Copy X", min: -100, max: 200 },
+    { key: "textY", label: "Text Y position", min: -100, max: 100 },
   ],
 } as const;
 

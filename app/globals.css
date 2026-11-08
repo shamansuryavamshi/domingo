@@ -568,6 +568,7 @@ html.lenis body {
   }
 
   .hero__copy {
+    transform: translateY(var(--tablet-text-y, 0px));
     margin-top: 0;
     padding-left: calc(clamp(2rem, 5vw, 6rem) + var(--tune-copy-x, 0px));
     padding-right: 0;
