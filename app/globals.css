@@ -536,6 +536,22 @@ html.lenis body {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1365px) and (orientation: landscape) and (min-height: 600px) {
+  #hero {
+    --tune-art-scale: 1;
+    --tune-art-x: 0%;
+    --tune-art-y: 0%;
+    --tune-star-scale: 1;
+    --tune-star-x: 0%;
+    --tune-star-y: -11%;
+    --tune-dessert-scale: 1;
+    --tune-dessert-x: 0%;
+    --tune-dessert-y: -9%;
+    --tune-title-scale: 1.06;
+    --tune-desc-scale: 0.85;
+    --tune-copy-x: -4px;
+    --tablet-text-y: -100px;
+  }
+
   .hero__art {
     --hero-art-scale: clamp(0.68, calc(0.68 + (100vw - 768px) / 2000px), 1);
     transform: translate(var(--tune-art-x, 0%), var(--tune-art-y, 0%))

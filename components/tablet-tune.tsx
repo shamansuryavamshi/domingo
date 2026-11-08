@@ -10,14 +10,14 @@ const DEFAULT_TUNE = {
   artY: 0,
   starScale: 100,
   starX: 0,
-  starY: 0,
+  starY: -11,
   dessertScale: 100,
   dessertX: 0,
-  dessertY: 0,
-  titleScale: 100,
-  descScale: 100,
-  copyX: 0,
-  textY: 0,
+  dessertY: -9,
+  titleScale: 106,
+  descScale: 85,
+  copyX: -4,
+  textY: -100,
 };
 
 type Tune = typeof DEFAULT_TUNE;
@@ -59,7 +59,7 @@ const TABLES = {
     { key: "titleScale", label: "Title size", min: 50, max: 150 },
     { key: "descScale", label: "Text size", min: 50, max: 150 },
     { key: "copyX", label: "Copy X", min: -100, max: 200 },
-    { key: "textY", label: "Text Y position", min: -100, max: 100 },
+    { key: "textY", label: "Text Y position", min: -110, max: 100 },
   ],
 } as const;
 
@@ -128,6 +128,14 @@ export default function TabletTune() {
   useEffect(() => {
     const hero = document.getElementById("hero");
     if (!hero) return;
+
+    const names = Object.values(VARIABLES).map(({ name }) => name);
+
+    if (!enabled || !visible) {
+      for (const name of names) hero.style.removeProperty(name);
+      return;
+    }
+
     for (const key of Object.keys(VARIABLES) as TuneKey[]) {
       const { name, unit, factor } = VARIABLES[key];
       hero.style.setProperty(name, `${tune[key] / factor}${unit}`);
@@ -137,7 +145,7 @@ export default function TabletTune() {
     } catch {
       // ignore unavailable storage
     }
-  }, [tune]);
+  }, [tune, enabled, visible]);
 
   function update(key: TuneKey, value: number) {
     setTune((current) => ({ ...current, [key]: value }));
